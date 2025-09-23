@@ -1,0 +1,113 @@
+# 📚 CRUD de Alunos
+
+Projeto simples de CRUD para gerenciamento de alunos, desenvolvido com **Spring Boot** e banco de dados **H2**.
+Ele permite cadastrar, listar, atualizar e excluir alunos de forma prática via API REST.
+
+---
+
+## 🛠 Tecnologias
+
+- Java 17+
+- Spring Boot
+- Spring Data JPA
+- H2 Database
+- Maven
+
+---
+
+## 🚀 Como rodar o projeto
+
+1. Clone este repositório:
+
+   ```bash
+   git clone https://github.com/Phhenrique3/crud_aluno.git
+
+
+Entre na pasta do projeto:
+
+cd crud_aluno
+
+
+Configure o banco de dados no arquivo src/main/resources/application.properties.
+Para manter os dados mesmo após reiniciar, use o modo arquivo:
+
+spring.datasource.url=jdbc:h2:file:./data/crud_aluno
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+spring.jpa.hibernate.ddl-auto=update
+spring.h2.console.enabled=true
+spring.h2.console.path=/h2-console
+
+
+Execute o projeto:
+
+mvn spring-boot:run
+
+🔍 Endpoints da API
+Método	Endpoint	Descrição
+GET	/alunos	Lista todos os alunos
+POST	/alunos	Cria um novo aluno
+PUT	/alunos/{id}	Atualiza um aluno existente
+DELETE	/alunos/{id}	Exclui um aluno e retorna mensagem de status
+
+🧪 Exemplos de uso
+➕ Criar aluno
+
+POST http://localhost:8080/alunos
+
+{
+  "nome": "João Silva",
+  "email": "joao@email.com",
+  "cpf": "12345678900",
+  "curso": "Engenharia de Software"
+}
+
+✏️ Atualizar aluno
+
+PUT http://localhost:8080/alunos/1
+
+{
+  "nome": "João da Silva",
+  "email": "joao.silva@email.com",
+  "cpf": "12345678900",
+  "curso": "Ciência da Computação"
+}
+
+❌ Deletar aluno
+
+DELETE http://localhost:8080/alunos/1
+
+📌 Sucesso:
+
+{
+  "mensagem": "Aluno com ID 1 foi excluído com sucesso."
+}
+
+
+📌 Erro (não encontrado):
+
+{
+  "mensagem": "Aluno com ID 99 não encontrado."
+}
+
+🔧 Console H2
+
+Após rodar o projeto, acesse:
+👉 http://localhost:8080/h2-console
+
+JDBC URL: jdbc:h2:file:./data/crud_aluno
+
+Usuário: sa
+
+Senha: (em branco, se não configurada)
+
+📁 Observações
+
+No modo mem os dados somem quando a aplicação reinicia.
+
+No modo file os dados são persistidos em disco.
+
+O spring.jpa.hibernate.ddl-auto=update mantém o schema atualizado sem apagar os dados.
+
+👨‍💻 Autor: Phhenrique3
